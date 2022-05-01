@@ -38,7 +38,7 @@ export const reqgetAtterList = (oneid, twoid, terid) => request({
 //添加属性与属性值接口
 // /admin/product/saveAttrInfo
 
-export const reqAddAtterInfo = (data) => request({
+export const reqAddOrUpdateAttr = (data) => request({
   url: '/admin/product/saveAttrInfo',
   method: 'post',
   data

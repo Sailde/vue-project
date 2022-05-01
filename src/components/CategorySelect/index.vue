@@ -40,6 +40,8 @@
     },
     mounted() {
       this.getCategoryOneList();
+      console.log(this.$parent.gutter);
+      console.log(this.$attrs.gutter)
     },
     methods: {
       async getCategoryOneList() {
@@ -55,7 +57,7 @@
         this.terList = []
         this.trform.twoda = ''
         this.trform.terda = ''
-        this.$emit("getCategoryid", {id:oneda, index: 1})
+        this.$emit("getCategoryid", {id: oneda, index: 1})
 
 
         //当一级分类发生改变 携带一级分类id发送请求获取二级分类
@@ -69,7 +71,7 @@
         let {twoda} = this.trform
         this.terList = []
         this.trform.terda = ''
-        this.$emit("getCategoryid", {id:twoda, index: 2})
+        this.$emit("getCategoryid", {id: twoda, index: 2})
 
         let result = await this.$API.attrs.reqAtterTwo(twoda)
         if (result.code === 200) {
@@ -79,7 +81,7 @@
       handou3() {
         //获取列表数据
         let {terda} = this.trform
-        this.$emit("getCategoryid", {id:terda, index: 3})
+        this.$emit("getCategoryid", {id: terda, index: 3})
       }
     }
   }
