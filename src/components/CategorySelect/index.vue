@@ -40,8 +40,6 @@
     },
     mounted() {
       this.getCategoryOneList();
-      console.log(this.$parent.gutter);
-      console.log(this.$attrs.gutter)
     },
     methods: {
       async getCategoryOneList() {

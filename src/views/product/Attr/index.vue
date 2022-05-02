@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CategorySelect :gutter="20" @getCategoryid="getCategoryid"></CategorySelect>
+    <CategorySelect @getCategoryid="getCategoryid"></CategorySelect>
     <el-card class="box-card">
       <div v-show="isShowTable">
         <el-button class="addshouxing" type="primary" :disabled="!terid" @click="addAtter"
