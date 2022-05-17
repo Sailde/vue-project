@@ -39,7 +39,8 @@
           >
             <template slot-scope="{row,$index}">
               <el-button type="warning" icon="el-icon-edit" size="mini" @click="shoudialogTable(row)">修改</el-button>
-              <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleAtterList(row)">删除</el-button>
+              <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleAtterList(row,$index)">删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -51,7 +52,9 @@
             <el-button icon="el-icon-plus" type="primary" style="margin-left: 20px" :disabled="!attrInfo.attrName"
                        @click="addAttrValue()">添加属性值
             </el-button>
-            <el-button style="margin-left: 20px" type="primary" :disabled="this.attrInfo.attrValueList.length<1" @click="AddOrUpdateAttr">保存</el-button>
+            <el-button style="margin-left: 20px" type="primary" :disabled="this.attrInfo.attrValueList.length<1"
+                       @click="AddOrUpdateAttr">保存
+            </el-button>
             <el-button style="margin-left: 20px" @click="isShowTable = true">取消</el-button>
           </el-form-item>
           <el-form-item>
@@ -105,6 +108,7 @@
       }
     },
     methods: {
+      //导航栏回调
       getCategoryid({id, index}) {
         if (index === 1) {
           this.twoid = ''
@@ -123,6 +127,7 @@
           this.delattrInfo()
         }
       },
+
       //获取平台属性
       async getAtterList() {
         let {oneid, twoid, terid} = this
@@ -131,6 +136,7 @@
           this.AtterList = result.data
         }
       },
+
       //内页-添加属性值按钮
       addAttrValue() {
         let {attrInfo: {attrValueList}} = this
@@ -144,6 +150,7 @@
           this.$refs[attrValueList.length - attrValueList.length].focus()
         })
       },
+
       //内页-input 和 span 元素切换函数
       toLook(row) {
         if (row.valueName.trim() === '') {
@@ -170,6 +177,7 @@
 
 
       },
+
       //内页-span 切换到input 获取节点
       toEdit(row, index) {
         row.flag = true
@@ -177,10 +185,12 @@
           this.$refs[index].focus()
         })
       },
+
       //内页-气泡确认框回调
       deleattrValueList(row, index) {
         this.attrInfo.attrValueList.splice(index, 1)
       },
+
       //内页-保存按钮
       async AddOrUpdateAttr() {
         let {attrInfo: {attrValueList}} = this
@@ -205,6 +215,7 @@
           })
         }
       },
+
       //主页添加属性按钮
       addAtter() {
         this.isShowTable = false
@@ -215,6 +226,7 @@
           categoryLevel: this.terid
         }
       },
+
       //主页修改属性按钮
       shoudialogTable(row) {
         this.isShowTable = false
@@ -223,9 +235,25 @@
           this.$set(item, "flag", false)
         })
       },
+
       //主页删除属性按钮
-      deleAtterList(row) {
+      async deleAtterList(row) {
+        console.log(row)
+        try {
+          await this.$API.attrs.reqDeletAttrId(row.id)
+          this.$message({
+            type: "success",
+            message: "删除成功！"
+          })
+          this.getAtterList()
+        } catch (e) {
+          this.$message({
+            type: "error",
+            message: "删除失败！"
+          })
+        }
       },
+
       //当一级 二级 三级 菜单 发生变化 || 还原默认状态 返回主页
       delattrInfo() {
         this.attrInfo = {
@@ -236,6 +264,7 @@
         }
         this.isShowTable = true
       }
+
     }
   }
 </script>

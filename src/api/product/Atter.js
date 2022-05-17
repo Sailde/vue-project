@@ -43,3 +43,7 @@ export const reqAddOrUpdateAttr = (data) => request({
   method: 'post',
   data
 })
+
+//删除属性接口
+// /admin/product/deleteAttr/{attrId}
+export const reqDeletAttrId = (attrId)=> request({url:`/admin/product/deleteAttr/${attrId}`,method:"delete"})

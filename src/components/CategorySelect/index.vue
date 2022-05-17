@@ -71,7 +71,7 @@
         this.trform.terda = ''
         this.$emit("getCategoryid", {id: twoda, index: 2})
 
-        let result = await this.$API.attrs.reqAtterTwo(twoda)
+        let result = await this.$API.attrs.reqAtterThree(twoda)
         if (result.code === 200) {
           this.terList = result.data
         }
