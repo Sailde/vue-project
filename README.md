@@ -1,9 +1,14 @@
-# enter the project directory
+#克隆到本地 
+git clone https://github.com/Sailde/vue-project.git
+
+# Cd 进入 admin 文件夹
 cd admin
 
-# install dependency
+# npm 下载包
 npm install
 
-# develop
+# npm run dev 运行
 npm run dev
 ```
+#打开网址访问
+http://localhost:9528/#/dashboard
