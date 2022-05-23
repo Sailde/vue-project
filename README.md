@@ -13,3 +13,7 @@ npm run dev
 # 打开网址访问
 http://localhost:9528/#/dashboard
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
