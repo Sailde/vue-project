@@ -1,30 +1,25 @@
 <template>
-  <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+  <div>
+    <Header></Header>
+    <Content></Content>
+    <Footer></Footer>
   </div>
 </template>
-
 <script>
-import { mapGetters } from 'vuex'
+  import Header from '@/views/dashboard/Header'
+  import Footer from '@/views/dashboard/Footer'
+  import Content from '@/views/dashboard/Content'
 
-export default {
-  name: 'Dashboard',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
-  }
-}
+  export default {
+    name: "Dashboard",
+    components: {
+      Header,
+      Footer,
+      Content
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
-  }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
-  }
-}
+
 </style>
